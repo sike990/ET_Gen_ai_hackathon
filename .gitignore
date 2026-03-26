@@ -14,8 +14,6 @@ __pycache__/
 .vscode/
 .idea/
 
-# Local databases
-chroma_db/
 
 # OS generated files
 .DS_Store
