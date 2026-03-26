@@ -1,0 +1,67 @@
+DEBT ELIMINATION STRATEGIES
+===========================
+
+UNDERSTANDING DEBT TYPES
+------------------------
+• TOXIC DEBT (>15% APR): Credit cards, payday loans, store cards. 
+  This debt is a financial emergency. Minimum $200-500/month extra payments required.
+  
+• HIGH-INTEREST DEBT (7-15%): Personal loans, some car loans, private student loans.
+  Aggressive paydown recommended before investing beyond employer match.
+  
+• MODERATE DEBT (4-7%): Federal student loans, some car loans.
+  Balance between paydown and investing. Consider refinancing.
+  
+• LOW-INTEREST DEBT (<4%): Mortgages, some federal student loans.
+  Minimum payments are fine — invest the difference instead.
+
+THE AVALANCHE METHOD (Mathematically Optimal)
+---------------------------------------------
+1. List all debts from HIGHEST to LOWEST interest rate.
+2. Pay minimum on every debt.
+3. Throw ALL extra money at the debt with the highest rate.
+4. When that debt is paid off, roll that payment into the next highest rate.
+5. Repeat until debt-free.
+
+ADVANTAGE: Saves the most money on interest. Fastest path to debt freedom.
+BEST FOR: People motivated by math and long-term optimization.
+
+Example:
+- Credit Card A: $5,000 @ 22% → ATTACK THIS FIRST
+- Credit Card B: $3,000 @ 18% → Attack second
+- Car Loan: $15,000 @ 5% → Minimum payments
+- Student Loan: $30,000 @ 4% → Minimum payments
+
+THE SNOWBALL METHOD (Psychologically Powerful)
+----------------------------------------------
+1. List all debts from SMALLEST to LARGEST balance.
+2. Pay minimum on every debt.
+3. Throw ALL extra money at the smallest balance.
+4. When paid off, roll that payment to the next smallest.
+5. Repeat until debt-free.
+
+ADVANTAGE: Quick wins create momentum and motivation.
+BEST FOR: People who need psychological victories to stay on track.
+
+DEBT-TO-INCOME RATIO (DTI)
+---------------------------
+Your monthly debt payments ÷ gross monthly income = DTI
+
+• Under 20%: Healthy — you're in good shape.
+• 20-35%: Manageable — room for improvement.
+• 35-50%: Stressed — need a paydown plan immediately.
+• Over 50%: Crisis — consider debt consolidation or counseling.
+
+REFINANCING CONSIDERATIONS
+---------------------------
+• Only refinance if the new rate saves at least 1-2% AND you plan to keep the loan.
+• Federal student loans: Be cautious — refinancing loses income-driven repayment options.
+• Mortgage refinancing: Factor in closing costs (typically 2-5% of loan amount).
+
+MONTHLY PAYMENT FORMULA FOR DEBT FREEDOM
+-----------------------------------------
+To become debt-free in N months:
+Payment = Balance × (Rate/12) / (1 - (1 + Rate/12)^(-N))
+
+Example: $10,000 at 18% APR, paid off in 24 months:
+Payment = $10,000 × 0.015 / (1 - 1.015^(-24)) = $499/month

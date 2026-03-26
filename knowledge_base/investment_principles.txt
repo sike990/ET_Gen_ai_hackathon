@@ -1,0 +1,83 @@
+INVESTMENT PRINCIPLES & ASSET ALLOCATION
+=========================================
+
+THE 100-AGE RULE (Equity Allocation)
+-------------------------------------
+A classic rule of thumb for determining how much of your portfolio should be
+in stocks (equities) versus bonds:
+
+    Equity Allocation % = 100 - Your Age
+
+Examples:
+• Age 25 → 75% stocks, 25% bonds
+• Age 35 → 65% stocks, 35% bonds
+• Age 45 → 55% stocks, 45% bonds
+• Age 55 → 45% stocks, 55% bonds
+• Age 65 → 35% stocks, 65% bonds
+
+Modern variation (longer lifespans): Some advisors now use 110 or 120 minus age,
+since people live longer and need more growth. For aggressive investors:
+    Equity % = 110 - Age  or  120 - Age
+
+FIDELITY RETIREMENT MILESTONES
+-------------------------------
+How much you should have saved as a multiple of your annual salary:
+
+Age 25: 0.5× salary saved
+Age 30: 1× salary
+Age 35: 2× salary
+Age 40: 3× salary
+Age 45: 4× salary
+Age 50: 6× salary
+Age 55: 7× salary
+Age 60: 8× salary
+Age 67: 10× salary
+
+If you're behind, increase your savings rate by at least 1% per year until you
+catch up. Consider delaying retirement or finding supplemental income.
+
+THE SAFE WITHDRAWAL RATE (4% Rule)
+------------------------------------
+The Trinity Study (1998) established the "4% Rule":
+• In your first year of retirement, withdraw 4% of your total portfolio.
+• Each subsequent year, adjust for inflation.
+• With a balanced portfolio, this approach has a >95% success rate over 30 years.
+
+Example: 
+• Portfolio: $1,000,000
+• First-year withdrawal: $40,000/year ($3,333/month)
+• Year 2 with 3% inflation: $41,200/year
+
+Modern adjustments:
+• Some researchers suggest 3.5% for longer retirements (40+ years).
+• Required Minimum Distributions (RMDs) may force higher withdrawals later.
+
+LOW-COST INDEX FUND STRATEGY (Three-Fund Portfolio)
+----------------------------------------------------
+The simplest, most effective investment approach:
+
+1. US Total Stock Market Index Fund (e.g., VTI, VTSAX)
+   - Covers 4,000+ US stocks
+   - Expense ratio: ~0.03%
+
+2. International Stock Index Fund (e.g., VXUS, VTIAX)
+   - Covers developed + emerging markets
+   - Expense ratio: ~0.07%
+
+3. US Total Bond Market Index Fund (e.g., BND, VBTLX)
+   - Provides stability and income
+   - Expense ratio: ~0.03%
+
+Allocation guidance:
+• Young (under 40): 60% US Stock, 25% International, 15% Bond
+• Middle (40-55): 50% US Stock, 20% International, 30% Bond
+• Near Retirement (55+): 35% US Stock, 15% International, 50% Bond
+
+DOLLAR-COST AVERAGING
+----------------------
+Invest a fixed amount on a regular schedule regardless of market conditions.
+This removes the temptation to time the market and smooths out volatility.
+
+Example: Invest $500 on the 1st of every month into your index funds.
+When prices are high, you buy fewer shares. When prices are low, you buy more.
+Over time, your average cost per share tends to be lower.
