@@ -235,7 +235,6 @@ def brain_orchestrator(state: dict) -> dict:
         "available_monthly_surplus": surplus,
         "current_agent_index": 0,
         "spider_chart_path": chart_path,
-        "messages": [status_msg],
         "recommendations": {},
     }
 
@@ -338,7 +337,6 @@ Keep response under 400 words. Use markdown formatting.
 
     return {
         "recommendations": recommendations,
-        "messages": [AIMessage(content=f"🏦 **Savings Architect Report**\n\n{advice}")],
         **_advance_index(state),
     }
 
@@ -407,7 +405,6 @@ Keep response under 400 words. Use markdown formatting.
 
     return {
         "recommendations": recommendations,
-        "messages": [AIMessage(content=f"🔥 **Debt Shredder Report**\n\n{advice}")],
         **_advance_index(state),
     }
 
@@ -461,7 +458,6 @@ Keep response under 350 words. Use markdown formatting.
 
     return {
         "recommendations": recommendations,
-        "messages": [AIMessage(content=f"🛡️ **Insurance Expert Report**\n\n{advice}")],
         **_advance_index(state),
     }
 
@@ -521,7 +517,6 @@ Keep response under 400 words. Use markdown formatting.
 
     return {
         "recommendations": recommendations,
-        "messages": [AIMessage(content=f"📈 **Investment Scout Report**\n\n{advice}")],
         **_advance_index(state),
     }
 
@@ -615,7 +610,6 @@ def final_planner(state: dict) -> dict:
         )
         return {
             "financial_plan": plan,
-            "messages": [AIMessage(content=plan)],
         }
 
     llm = get_llm(temperature=0.2)
@@ -702,5 +696,4 @@ IMPORTANT RULES:
 
     return {
         "financial_plan": plan,
-        "messages": [AIMessage(content=plan)],
     }
