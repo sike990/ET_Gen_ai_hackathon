@@ -1,5 +1,5 @@
 """
-Anti-Gravity Financial Agentic System
+SampattiSutra
 Streamlit Frontend — Dual-mode interface (Sidebar Form + Main Chat)
 """
 
@@ -19,7 +19,7 @@ from database import init_db, create_user, authenticate_user, save_user_profile,
 
 # ── Page Config ────────────────────────────────────────────────────
 st.set_page_config(
-    page_title="Anti-Gravity Financial System",
+    page_title="SampattiSutra",
     page_icon="🚀",
     layout="wide",
     initial_sidebar_state="expanded",
@@ -180,7 +180,7 @@ def init_rag():
 # SIDEBAR: Financial Data Form
 # ══════════════════════════════════════════════════════════════════
 if not st.session_state.logged_in:
-    st.markdown("<h2 style='text-align: center; color: #00E5FF;'>🔐 Anti-Gravity Login</h2>", unsafe_allow_html=True)
+    st.markdown("<h2 style='text-align: center; color: #00E5FF;'>🔐 SampattiSutra Login</h2>", unsafe_allow_html=True)
     st.markdown("<p style='text-align: center;'>Please login or register to access your financial profiles.</p>", unsafe_allow_html=True)
     
     col1, col2, col3 = st.columns([1, 2, 1])
@@ -356,7 +356,7 @@ with st.sidebar:
 # ══════════════════════════════════════════════════════════════════
 st.markdown("""
 <div class="main-header">
-    <h1>🚀 Anti-Gravity Financial System</h1>
+    <h1>🚀 SampattiSutra Financial System</h1>
     <p>AI-Powered Multi-Agent Financial Advisor</p>
 </div>
 """, unsafe_allow_html=True)
@@ -391,7 +391,7 @@ if analyze_btn:
 
     st.session_state.user_data = user_data
 
-    with st.spinner("🧠 Running Anti-Gravity Financial Brain..."):
+    with st.spinner("🧠 Running SampattiSutra Financial Brain..."):
         try:
             result = run_graph(user_data)
             st.session_state.graph_result = result
