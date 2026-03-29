@@ -15,6 +15,7 @@ from scoring_engine import FinancialEngine
 from visualization import create_spider_chart, create_comparison_chart
 from rag_setup import ingest_documents
 from langchain_core.messages import HumanMessage, AIMessage
+from database import init_db, create_user, authenticate_user, save_user_profile, get_user_profile
 
 # ── Page Config ────────────────────────────────────────────────────
 st.set_page_config(
@@ -121,6 +122,13 @@ if "rag_initialized" not in st.session_state:
     st.session_state.rag_initialized = False
 if "onboarding_shown" not in st.session_state:
     st.session_state.onboarding_shown = False
+if "logged_in" not in st.session_state:
+    st.session_state.logged_in = False
+    init_db()
+if "username" not in st.session_state:
+    st.session_state.username = None
+if "user_id" not in st.session_state:
+    st.session_state.user_id = None
 
 # ── Show onboarding message on first load ──────────────────────────
 if not st.session_state.onboarding_shown:
@@ -171,17 +179,81 @@ def init_rag():
 # ══════════════════════════════════════════════════════════════════
 # SIDEBAR: Financial Data Form
 # ══════════════════════════════════════════════════════════════════
+if not st.session_state.logged_in:
+    st.markdown("<h2 style='text-align: center; color: #00E5FF;'>🔐 Anti-Gravity Login</h2>", unsafe_allow_html=True)
+    st.markdown("<p style='text-align: center;'>Please login or register to access your financial profiles.</p>", unsafe_allow_html=True)
+    
+    col1, col2, col3 = st.columns([1, 2, 1])
+    with col2:
+        tab1, tab2 = st.tabs(["Login", "Register"])
+        
+        with tab1:
+            log_user = st.text_input("Username", key="log_user")
+            log_pass = st.text_input("Password", type="password", key="log_pass")
+            if st.button("Login", type="primary", use_container_width=True, key="log_btn"):
+                if log_user and log_pass:
+                    success, uid = authenticate_user(log_user, log_pass)
+                    if success:
+                        st.session_state.logged_in = True
+                        st.session_state.username = log_user
+                        st.session_state.user_id = uid
+                        
+                        profile = get_user_profile(uid)
+                        if profile:
+                            st.session_state.user_data = profile
+                            
+                        st.rerun()
+                    else:
+                        st.error("Invalid credentials.")
+                else:
+                    st.warning("Please fill all fields.")
+                    
+        with tab2:
+            reg_user = st.text_input("New Username", key="reg_user")
+            reg_pass = st.text_input("New Password", type="password", key="reg_pass")
+            reg_conf = st.text_input("Confirm Password", type="password", key="reg_conf")
+            if st.button("Register", type="primary", use_container_width=True, key="reg_btn"):
+                if reg_user and reg_pass and reg_conf:
+                    if reg_pass == reg_conf:
+                        success, msg = create_user(reg_user, reg_pass)
+                        if success:
+                            st.success("Registered successfully! Please login from the Login tab.")
+                        else:
+                            st.error(msg)
+                    else:
+                        st.warning("Passwords do not match!")
+                else:
+                    st.warning("Please fill all fields.")
+                    
+    st.stop()
+
+# ══════════════════════════════════════════════════════════════════
+# SIDEBAR: Financial Data Form
+# ══════════════════════════════════════════════════════════════════
 with st.sidebar:
+    st.markdown(f"**👤 Logged in as: {st.session_state.username}**")
+    if st.button("Logout", key="logout_btn", use_container_width=True):
+        st.session_state.logged_in = False
+        st.session_state.username = None
+        st.session_state.user_id = None
+        st.session_state.user_data = None
+        st.session_state.graph_result = None
+        st.session_state.chat_history = []
+        st.rerun()
+        
+    st.markdown("---")
     st.markdown("## 🚀 Your Financial Profile")
     st.markdown("---")
+    
+    saved_profile = st.session_state.user_data or {}
 
     # --- Income & Expenses ---
     st.markdown("### 💰 Income & Expenses")
     monthly_income = st.number_input(
-        "Monthly Income (₹)", min_value=0, value=50000, step=1000, key="income"
+        "Monthly Income (₹)", min_value=0, value=int(saved_profile.get("monthly_income", 50000)), step=1000, key="income"
     )
     essential_expenses = st.number_input(
-        "Monthly Essential Expenses (₹)", min_value=0, value=30000, step=1000, key="expenses"
+        "Monthly Essential Expenses (₹)", min_value=0, value=int(saved_profile.get("essential_expenses", 30000)), step=1000, key="expenses"
     )
 
     st.markdown("---")
@@ -189,13 +261,13 @@ with st.sidebar:
     # --- Savings ---
     st.markdown("### 🏦 Savings")
     liquid_savings = st.number_input(
-        "Liquid Savings / Emergency Fund (₹)", min_value=0, value=100000, step=5000, key="savings"
+        "Liquid Savings / Emergency Fund (₹)", min_value=0, value=int(saved_profile.get("liquid_savings", 100000)), step=5000, key="savings"
     )
     retirement_savings = st.number_input(
-        "Retirement Savings (PF/NPS/PPF) (₹)", min_value=0, value=500000, step=10000, key="retirement"
+        "Retirement Savings (PF/NPS/PPF) (₹)", min_value=0, value=int(saved_profile.get("retirement_savings", 500000)), step=10000, key="retirement"
     )
     annual_retirement_contribution = st.number_input(
-        "Annual Retirement Contribution (₹)", min_value=0, value=60000, step=5000, key="ret_contrib"
+        "Annual Retirement Contribution (₹)", min_value=0, value=int(saved_profile.get("annual_retirement_contribution", 60000)), step=5000, key="ret_contrib"
     )
 
     st.markdown("---")
@@ -232,19 +304,51 @@ with st.sidebar:
 
     # --- Age & Investment ---
     st.markdown("### 📊 Age & Investments")
-    age = st.number_input("Age", min_value=18, max_value=80, value=30, step=1, key="age")
-    current_equity_pct = st.slider("Current Equity Allocation (%)", 0, 100, 70, key="equity")
+    age = st.number_input("Age", min_value=18, max_value=80, value=int(saved_profile.get("age", 30)), step=1, key="age")
+    current_equity_pct = st.slider("Current Equity Allocation (%)", 0, 100, int(saved_profile.get("current_equity_pct", 70)), key="equity")
     tax_contributions = st.number_input(
-        "Annual Tax-Advantaged Contributions (₹)", min_value=0, value=150000, step=10000, key="tax_contrib"
+        "Annual Tax-Advantaged Contributions (₹)", min_value=0, value=int(saved_profile.get("tax_advantaged_contributions", 150000)), step=10000, key="tax_contrib"
     )
     employer_match = st.number_input(
-        "Employer Match (%)", min_value=0.0, max_value=20.0, value=3.0, step=0.5, key="match"
+        "Employer Match (%)", min_value=0.0, max_value=20.0, value=float(saved_profile.get("employer_match_pct", 3.0)), step=0.5, key="match"
     )
 
     st.markdown("---")
 
     # --- Submit ---
     analyze_btn = st.button("🚀 Analyze My Finances", use_container_width=True, type="primary")
+    save_btn = st.button("💾 Save Profile Configuration", use_container_width=True)
+
+    if save_btn:
+        user_data_to_save = {
+            "monthly_income": monthly_income,
+            "essential_expenses": essential_expenses,
+            "liquid_savings": liquid_savings,
+            "retirement_savings": retirement_savings,
+            "annual_retirement_contribution": annual_retirement_contribution,
+            "total_debt": sum(debt_balances),
+            "monthly_debt_payment": total_monthly_payment,
+            "debt_interest_rates": debt_rates,
+            "debt_names": debt_names,
+            "debt_balances": debt_balances,
+            "age": age,
+            "insurance_status": {
+                "health": has_health,
+                "life": has_life,
+                "disability": has_disability,
+            },
+            "tax_advantaged_contributions": tax_contributions,
+            "employer_match_pct": employer_match,
+            "current_equity_pct": current_equity_pct,
+            "annual_income": monthly_income * 12,
+        }
+        
+        success = save_user_profile(st.session_state.user_id, user_data_to_save)
+        if success:
+            st.session_state.user_data = user_data_to_save
+            st.success("✅ Profile saved!")
+        else:
+            st.error("❌ Failed to save profile.")
 
 
 # ══════════════════════════════════════════════════════════════════
