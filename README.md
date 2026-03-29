@@ -1,4 +1,5 @@
-# 🚀 Anti-Gravity Financial AI System
+# 🚀 SampattiSutra 
+## Financial AI System
 
 An intelligent, multi-agent financial command center powered by Google's **Gemini LLM, LangChain, LangGraph, Streamlit, and ChromaDB RAG**. 
 
