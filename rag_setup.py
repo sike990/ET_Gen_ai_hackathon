@@ -55,6 +55,9 @@ FILE_AGENT_MAP = {
     "The Simple Path to Wealth PDF.pdf": "investment_scout",
     "L-G-0000569553-0013624054.pdf": "investment_scout",
     "A Random Walk Down Wall Street_ The Time-Tested Strategy for Successful Investing.pdf": "investment_scout",
+    
+    # ── PDF Books — Final Planner (ET Ecosystem) ────────────────────
+    "ET Ecosystem Service Mapping.pdf": "final_planner",
 }
 
 # ── Embeddings ─────────────────────────────────────────────────────

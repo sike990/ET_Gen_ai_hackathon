@@ -1,0 +1,111 @@
+Ignoring wrong pointing object 2 65536 (offset 0)
+Ignoring wrong pointing object 45 65536 (offset 0)
+Ignoring wrong pointing object 49 65536 (offset 0)
+Ignoring wrong pointing object 62 65536 (offset 0)
+Ignoring wrong pointing object 76 65536 (offset 0)
+Ignoring wrong pointing object 81 65536 (offset 0)
+Ignoring wrong pointing object 90 65536 (offset 0)
+Ignoring wrong pointing object 108 65536 (offset 0)
+Ignoring wrong pointing object 111 65536 (offset 0)
+Ignoring wrong pointing object 124 65536 (offset 0)
+Ignoring wrong pointing object 129 65536 (offset 0)
+Ignoring wrong pointing object 132 65536 (offset 0)
+Ignoring wrong pointing object 135 65536 (offset 0)
+Ignoring wrong pointing object 153 65536 (offset 0)
+Ignoring wrong pointing object 159 65536 (offset 0)
+Ignoring wrong pointing object 162 65536 (offset 0)
+Ignoring wrong pointing object 165 65536 (offset 0)
+Ignoring wrong pointing object 168 65536 (offset 0)
+Ignoring wrong pointing object 171 65536 (offset 0)
+Ignoring wrong pointing object 174 65536 (offset 0)
+Ignoring wrong pointing object 177 65536 (offset 0)
+Ignoring wrong pointing object 180 65536 (offset 0)
+Ignoring wrong pointing object 183 65536 (offset 0)
+Ignoring wrong pointing object 186 65536 (offset 0)
+Ignoring wrong pointing object 189 65536 (offset 0)
+Traceback (most recent call last):
+  File "/Users/anushwork/Desktop/Projects/GenAI/ET_Gen_ai_hackathon/venv/lib/python3.12/site-packages/langchain_google_genai/embeddings.py", line 432, in embed_documents
+    result = self.client.models.embed_content(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/anushwork/Desktop/Projects/GenAI/ET_Gen_ai_hackathon/venv/lib/python3.12/site-packages/google/genai/models.py", line 5882, in embed_content
+    return self._embed_content(model=model, contents=contents, config=config)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/anushwork/Desktop/Projects/GenAI/ET_Gen_ai_hackathon/venv/lib/python3.12/site-packages/google/genai/models.py", line 4882, in _embed_content
+    response = self._api_client.request(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/anushwork/Desktop/Projects/GenAI/ET_Gen_ai_hackathon/venv/lib/python3.12/site-packages/google/genai/_api_client.py", line 1532, in request
+    response = self._request(http_request, http_options, stream=False)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/anushwork/Desktop/Projects/GenAI/ET_Gen_ai_hackathon/venv/lib/python3.12/site-packages/google/genai/_api_client.py", line 1327, in _request
+    return self._retry(self._request_once, http_request, stream)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/anushwork/Desktop/Projects/GenAI/ET_Gen_ai_hackathon/venv/lib/python3.12/site-packages/tenacity/__init__.py", line 470, in __call__
+    do = self.iter(retry_state=retry_state)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/anushwork/Desktop/Projects/GenAI/ET_Gen_ai_hackathon/venv/lib/python3.12/site-packages/tenacity/__init__.py", line 371, in iter
+    result = action(retry_state)
+             ^^^^^^^^^^^^^^^^^^^
+  File "/Users/anushwork/Desktop/Projects/GenAI/ET_Gen_ai_hackathon/venv/lib/python3.12/site-packages/tenacity/__init__.py", line 413, in exc_check
+    raise retry_exc.reraise()
+          ^^^^^^^^^^^^^^^^^^^
+  File "/Users/anushwork/Desktop/Projects/GenAI/ET_Gen_ai_hackathon/venv/lib/python3.12/site-packages/tenacity/__init__.py", line 184, in reraise
+    raise self.last_attempt.result()
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/concurrent/futures/_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/Users/anushwork/Desktop/Projects/GenAI/ET_Gen_ai_hackathon/venv/lib/python3.12/site-packages/tenacity/__init__.py", line 473, in __call__
+    result = fn(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^
+  File "/Users/anushwork/Desktop/Projects/GenAI/ET_Gen_ai_hackathon/venv/lib/python3.12/site-packages/google/genai/_api_client.py", line 1304, in _request_once
+    errors.APIError.raise_for_response(response)
+  File "/Users/anushwork/Desktop/Projects/GenAI/ET_Gen_ai_hackathon/venv/lib/python3.12/site-packages/google/genai/errors.py", line 155, in raise_for_response
+    cls.raise_error(response.status_code, response_json, response)
+  File "/Users/anushwork/Desktop/Projects/GenAI/ET_Gen_ai_hackathon/venv/lib/python3.12/site-packages/google/genai/errors.py", line 184, in raise_error
+    raise ClientError(status_code, response_json, response)
+google.genai.errors.ClientError: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/embed_content_free_tier_requests, limit: 100, model: gemini-embedding-1.0\nPlease retry in 34.974823002s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/embed_content_free_tier_requests', 'quotaId': 'EmbedContentRequestsPerMinutePerUserPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-embedding-1.0'}, 'quotaValue': '100'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '34s'}]}}
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "/Users/anushwork/Desktop/Projects/GenAI/ET_Gen_ai_hackathon/rag_setup.py", line 132, in ingest_documents
+    vectorstore = Chroma.from_documents(
+                  ^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/anushwork/Desktop/Projects/GenAI/ET_Gen_ai_hackathon/venv/lib/python3.12/site-packages/langchain_chroma/vectorstores.py", line 1431, in from_documents
+    return cls.from_texts(
+           ^^^^^^^^^^^^^^^
+  File "/Users/anushwork/Desktop/Projects/GenAI/ET_Gen_ai_hackathon/venv/lib/python3.12/site-packages/langchain_chroma/vectorstores.py", line 1365, in from_texts
+    chroma_collection.add_texts(
+  File "/Users/anushwork/Desktop/Projects/GenAI/ET_Gen_ai_hackathon/venv/lib/python3.12/site-packages/langchain_chroma/vectorstores.py", line 627, in add_texts
+    embeddings = self._embedding_function.embed_documents(texts)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/anushwork/Desktop/Projects/GenAI/ET_Gen_ai_hackathon/venv/lib/python3.12/site-packages/langchain_google_genai/embeddings.py", line 439, in embed_documents
+    raise GoogleGenerativeAIError(msg) from e
+langchain_google_genai._common.GoogleGenerativeAIError: Error embedding content (RESOURCE_EXHAUSTED): 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/embed_content_free_tier_requests, limit: 100, model: gemini-embedding-1.0\nPlease retry in 34.974823002s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/embed_content_free_tier_requests', 'quotaId': 'EmbedContentRequestsPerMinutePerUserPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-embedding-1.0'}, 'quotaValue': '100'}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '34s'}]}}
+✓ Ingested     6 chunks from financial_order_of_operations.txt → orchestrator
+✓ Ingested     4 chunks from debt_strategies.txt → debt_shredder
+✓ Ingested     4 chunks from investment_principles.txt → investment_scout
+✓ Ingested     5 chunks from insurance_basics.txt → insurance_expert
+✓ Ingested    20 chunks from The-Financial-Order-of-Operations_v2-1.pdf → orchestrator
+✓ Ingested   416 chunks from 16-05-2021-070111The-Richest-Man-in-Babylon.pdf → orchestrator
+✓ Ingested   213 chunks from Let's Talk Money PDF.pdf → orchestrator
+✓ Ingested   373 chunks from I Can Do_RBI.pdf → orchestrator
+✓ Ingested   149 chunks from You Need a Budget PDF.pdf → debt_shredder
+✓ Ingested     8 chunks from FACTSHEET_Good_Bad_Debt.pdf → debt_shredder
+✓ Ingested   735 chunks from The Total Money Makeover - Dave Ramsey.pdf → debt_shredder
+✓ Ingested   373 chunks from How To Get Out Of Debt PDF.pdf → debt_shredder
+✓ Ingested    19 chunks from How_to_Get_Out_of_Debt,_Stay_Out_of_Debt,_and_Live_Prosperously_06032025_051556_PM.pdf → debt_shredder
+✓ Ingested     9 chunks from 92167234.pdf → insurance_expert
+✓ Ingested  1294 chunks from ALEnglish.pdf → insurance_expert
+✓ Ingested    96 chunks from ic-33_key_notes_combined.pdf → insurance_expert
+✓ Ingested  2131 chunks from THE-INTELLIGENT-INVESTOR.pdf → investment_scout
+✓ Ingested   141 chunks from Coffee Can Investing PDF.pdf → investment_scout
+✓ Ingested     0 chunks from common_stocks_and_uncommon_profits_and_other_writings.pdf → investment_scout
+✓ Ingested   715 chunks from The Most Important Thing by Howard Marks.pdf → investment_scout
+✓ Ingested    70 chunks from The Simple Path to Wealth PDF.pdf → investment_scout
+✓ Ingested    45 chunks from L-G-0000569553-0013624054.pdf → investment_scout
+✓ Ingested  1211 chunks from A Random Walk Down Wall Street_ The Time-Tested Strategy for Successful Investing.pdf → investment_scout
+✓ Ingested     3 chunks from ET Ecosystem Service Mapping.pdf → final_planner

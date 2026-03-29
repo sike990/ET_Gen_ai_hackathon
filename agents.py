@@ -620,6 +620,11 @@ def final_planner(state: dict) -> dict:
 
     llm = get_llm(temperature=0.2)
 
+    context = retrieve_context(
+        "final_planner",
+        "Economic Times ecosystem services relevant to financial topics like investments, mutual funds, portfolio management, debt, premium articles, news, or insurance."
+    )
+
     # ── Build structured digest of every agent's report ────────
     all_advice_sections = []
     for key in agent_order:
@@ -673,6 +678,9 @@ roadmap the user can follow.
 ## ═══  All 4 Specialist Reports  ═══
 {all_advice}
 
+## ET Ecosystem Services
+{context}
+
 ## ═══  Instructions  ═══
 Using EVERY report above, create the Financial Flight Plan in Markdown:
 
@@ -688,6 +696,7 @@ Using EVERY report above, create the Financial Flight Plan in Markdown:
    with the total row = ₹{surplus:,.0f}
 7. **📌 Priority Ranking** — Numbered list ranking all 4 areas from
    most-urgent to least-urgent with one-line justification
+8. **📰 The Economic Times Ecosystem Recommendations** — Consider the provided ET Ecosystem Services context. ONLY IF there is a highly relevant service (e.g., they need to track MFs and ET Portfolio exists), recommend 1 or 2 specific ET services that directly aid their financial plan. If none are relevant, omit this section. Do NOT recommend anything not explicitly mentioned in the ET Ecosystem Services context.
 
 IMPORTANT RULES:
 - All amounts must be in Indian Rupees (₹).
