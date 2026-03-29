@@ -401,9 +401,10 @@ if analyze_btn:
             st.session_state.chat_history = []
             for msg in messages:
                 if isinstance(msg, AIMessage):
-                    st.session_state.chat_history.append(("assistant", msg.content))
+                    is_internal = getattr(msg, "name", None) == "internal"
+                    st.session_state.chat_history.append(("assistant", msg.content, is_internal))
                 elif isinstance(msg, HumanMessage):
-                    st.session_state.chat_history.append(("user", msg.content))
+                    st.session_state.chat_history.append(("user", msg.content, False))
 
         except Exception as e:
             st.error(f"❌ Error running the financial system: {e}")
@@ -514,8 +515,20 @@ elif not analyze_btn:
 # CHAT SECTION — always visible, outside the result/welcome blocks
 # ──────────────────────────────────────────────────────────────────
 st.markdown('<div class="divider"></div>', unsafe_allow_html=True)
-st.markdown("### 💬 Agent Conversation")
-for role, content in st.session_state.chat_history:
+col_title, col_toggle = st.columns([3, 1])
+with col_title:
+    st.markdown("### 💬 Agent Conversation")
+with col_toggle:
+    show_internal = st.toggle("Show Agent Workings", value=False)
+
+for item in st.session_state.chat_history:
+    role = item[0]
+    content = item[1]
+    is_internal = item[2] if len(item) > 2 else False
+
+    if is_internal and not show_internal:
+        continue
+
     if role == "assistant":
         with st.chat_message("assistant", avatar="🤖"):
             st.markdown(content)
@@ -576,7 +589,8 @@ if chat_input and result:
                 messages = new_result.get("messages", [])
                 for msg in messages:
                     if isinstance(msg, AIMessage):
-                        st.session_state.chat_history.append(("assistant", msg.content))
+                        is_internal = getattr(msg, "name", None) == "internal"
+                        st.session_state.chat_history.append(("assistant", msg.content, is_internal))
 
             except Exception as e:
                 st.session_state.chat_history.append(("assistant", f"❌ Error: {e}"))

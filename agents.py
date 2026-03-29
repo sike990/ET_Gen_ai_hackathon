@@ -226,7 +226,7 @@ def brain_orchestrator(state: dict) -> dict:
         f"{budget_table}\n\n"
         f"**Execution Order (most severe first):**\n{order_display}\n\n"
         f"*Agents are chained directly — no return to Brain.*"
-    ))
+    ), name="internal")
 
     return {
         "scores": scores,
@@ -338,7 +338,7 @@ Keep response under 400 words. Use markdown formatting.
 
     return {
         "recommendations": recommendations,
-        "messages": [AIMessage(content=f"🏦 **Savings Architect Report**\n\n{advice}")],
+        "messages": [AIMessage(content=f"🏦 **Savings Architect Report**\n\n{advice}", name="internal")],
         **_advance_index(state),
     }
 
@@ -407,7 +407,7 @@ Keep response under 400 words. Use markdown formatting.
 
     return {
         "recommendations": recommendations,
-        "messages": [AIMessage(content=f"🔥 **Debt Shredder Report**\n\n{advice}")],
+        "messages": [AIMessage(content=f"🔥 **Debt Shredder Report**\n\n{advice}", name="internal")],
         **_advance_index(state),
     }
 
@@ -461,7 +461,7 @@ Keep response under 350 words. Use markdown formatting.
 
     return {
         "recommendations": recommendations,
-        "messages": [AIMessage(content=f"🛡️ **Insurance Expert Report**\n\n{advice}")],
+        "messages": [AIMessage(content=f"🛡️ **Insurance Expert Report**\n\n{advice}", name="internal")],
         **_advance_index(state),
     }
 
@@ -521,7 +521,7 @@ Keep response under 400 words. Use markdown formatting.
 
     return {
         "recommendations": recommendations,
-        "messages": [AIMessage(content=f"📈 **Investment Scout Report**\n\n{advice}")],
+        "messages": [AIMessage(content=f"📈 **Investment Scout Report**\n\n{advice}", name="internal")],
         **_advance_index(state),
     }
 
@@ -615,7 +615,7 @@ def final_planner(state: dict) -> dict:
         )
         return {
             "financial_plan": plan,
-            "messages": [AIMessage(content=plan)],
+            "messages": [AIMessage(content=plan, name="internal")],
         }
 
     llm = get_llm(temperature=0.2)
@@ -702,5 +702,5 @@ IMPORTANT RULES:
 
     return {
         "financial_plan": plan,
-        "messages": [AIMessage(content=plan)],
+        "messages": [AIMessage(content=plan, name="internal")],
     }
